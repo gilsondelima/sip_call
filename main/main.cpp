@@ -118,7 +118,7 @@ static void event_handler(void* arg, esp_event_base_t event_base,
             return;
         }
 
-        ESP_LOGI(TAG, "Wifi STA disconnected, deinit client");
+        ESP_LOGI(TAG, "Wifi STA desconectado, cliente desconectado!");
         ctx->client->deinit();
         ctx->io_context->stop();
         /* This is a workaround as ESP32 WiFi libs don't currently auto-reassociate. */
@@ -205,10 +205,10 @@ static void sip_task(void* pvParameters)
         if (!client.is_initialized())
         {
             bool result = client.init();
-            ESP_LOGI(TAG, "SIP client initialized %ssuccessfully", result ? "" : "un");
+            ESP_LOGI(TAG, "Cliente SIP inicializado %ssuccessfully", result ? "" : "un");
             if (!result)
             {
-                ESP_LOGI(TAG, "Waiting to try again...");
+                ESP_LOGI(TAG, "Esperando para tentar novamente...");
                 vTaskDelay(2000 / portTICK_RATE_MS);
                 continue;
             }
